@@ -14,12 +14,12 @@
     </Design.DataContext>
 
 	<Grid RowDefinitions="*" ColumnDefinitions="auto, *">
-		<TreeView Items="{Binding Items}" Grid.Column="0">
-			<TreeView.ItemTemplate>
-				<TreeDataTemplate ItemsSource="{Binding FilesAndFolders}">
+		<TreeView  SelectionChanged="SelectedNodeChanged" SelectionMode="Single" Items="{Binding Items}" Grid.Column="0">			
+			<TreeView.DataTemplates>
+				<TreeDataTemplate   ItemsSource="{Binding FilesAndFolders}">
 					<TextBlock Text="{Binding NodeName}"/>
 				</TreeDataTemplate>
-			</TreeView.ItemTemplate>
+			</TreeView.DataTemplates>
 		</TreeView>
 
 		<Carousel Grid.Column="1">
