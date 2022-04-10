@@ -14,16 +14,28 @@
     </Design.DataContext>
 
 	<Grid RowDefinitions="*" ColumnDefinitions="auto, *">
-		<TreeView  SelectionChanged="SelectedNodeChanged" SelectionMode="Single" Items="{Binding Items}" Grid.Column="0">			
-			<TreeView.DataTemplates>
-				<TreeDataTemplate   ItemsSource="{Binding FilesAndFolders}">
-					<TextBlock Text="{Binding NodeName}"/>
+		<TreeView  SelectionMode="Single" Items="{Binding Items}" Grid.Column="0">
+			<TreeView.ItemTemplate>
+				<TreeDataTemplate ItemsSource="{Binding FilesAndFolders}">
+					<ContentControl TemplateApplied="ClickForLoadNodes">
+						<TreeViewItem PointerReleased="ChangedSelectedNode" Header="{Binding NodeName}"/>
+					</ContentControl>
 				</TreeDataTemplate>
-			</TreeView.DataTemplates>
+			</TreeView.ItemTemplate>
 		</TreeView>
 
-		<Carousel Grid.Column="1">
-			
-		</Carousel>
+		<Grid Grid.Column="1" RowDefinitions="*, 50" ColumnDefinitions="*, *" >
+			<Carousel Name="Slider" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"  Items="{Binding DirectoryImages}">
+				<Carousel.DataTemplates>
+					<DataTemplate>
+						<Border ToolTip.Tip="gfhfdghfghjgfhjgh" Padding="60">
+						<Image Source="{Binding Img}" HorizontalAlignment="Stretch" />
+						</Border>
+					</DataTemplate>
+				</Carousel.DataTemplates>
+			</Carousel>
+			<Button Grid.Row="1" Grid.Column="0" Name="Back" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="Back"/>
+			<Button Grid.Row="1" Grid.Column="1" Name="Next" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="Next"/>
+		</Grid>
 	</Grid>
 </Window>

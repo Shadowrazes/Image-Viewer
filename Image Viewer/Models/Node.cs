@@ -5,16 +5,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Image_Viewer.Models
 {
-    public class Node
+    public class Node : INotifyPropertyChanged
     {
+        bool isSelected;
         private bool isHashed;
         public ObservableCollection<Node>? FilesAndFolders { get; set; }
-
         public string NodeName { get; }
         public string FullPath { get; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         public Node(string _FullPath, bool isDisk)
         {
