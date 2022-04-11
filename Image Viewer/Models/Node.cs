@@ -12,7 +12,6 @@ namespace Image_Viewer.Models
 {
     public class Node : INotifyPropertyChanged
     {
-        bool isSelected;
         private bool isHashed;
         public ObservableCollection<Node>? FilesAndFolders { get; set; }
         public string NodeName { get; }
@@ -33,17 +32,6 @@ namespace Image_Viewer.Models
             else
                 NodeName = "Диск " + _FullPath.Substring(0, _FullPath.IndexOf(":"));
             isHashed = false;
-        }
-
-        public void LoadNext()
-        {
-            foreach(Node file in FilesAndFolders)
-            {
-                if (!file.isHashed)
-                {
-                    file.GetFilesAndFolders();
-                }
-            }
         }
 
         public void GetFilesAndFolders()

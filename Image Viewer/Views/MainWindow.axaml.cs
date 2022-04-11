@@ -10,6 +10,7 @@ using Avalonia;
 using Avalonia.LogicalTree;
 using Avalonia.Layout;
 using Avalonia.Controls.Primitives;
+using Avalonia.Collections;
 
 namespace Image_Viewer.Views
 {
@@ -33,11 +34,11 @@ namespace Image_Viewer.Views
             _Next.Click += (s, e) => _Slider.Next();
         }
 
-        private void ChangedSelectedNode(object sender, PointerReleasedEventArgs e)
+        private void ChangedSelectedNode(object sender, SelectionChangedEventArgs e)
         {
             string[] allowedExtensions = new[] { ".jpg", ".jpeg", ".png" };
-            TreeViewItem treeViewItem = sender as TreeViewItem;
-            Node selectedNode = treeViewItem.DataContext as Node;
+            TreeView treeView = sender as TreeView;
+            Node selectedNode = treeView.SelectedItems[0] as Node;
 
             if (allowedExtensions.Any(selectedNode.NodeName.ToLower().EndsWith))
             {
@@ -47,6 +48,16 @@ namespace Image_Viewer.Views
                     .ToList();
                 files.Remove(selectedNode.FullPath);
                 var context = this.DataContext as MainWindowViewModel;
+                if (files.Count > 1)
+                {
+                    _Next.IsEnabled = true;
+                    _Back.IsEnabled = true;
+                }
+                else
+                {
+                    _Next.IsEnabled = false;
+                    _Back.IsEnabled = false;
+                }
                 context.RefreshImageList(files, selectedNode.FullPath);
             }
         }
@@ -55,7 +66,7 @@ namespace Image_Viewer.Views
         {
             ContentControl treeViewItem = sender as ContentControl;
             Node selectedNode = treeViewItem.DataContext as Node;
-            selectedNode.LoadNext();
+            selectedNode.GetFilesAndFolders();
         }
     }
 }

@@ -48,8 +48,7 @@ namespace Image_Viewer.ViewModels
             foreach (DriveInfo drive in allDrives)
             {
                 allDrivesNames.Add(drive.Name);
-                Node rootNode = new Node(drive.Name, true); //drive.Name.Substring(0, drive.Name.IndexOf(":"))
-                rootNode.GetFilesAndFolders();
+                Node rootNode = new Node(drive.Name, true);
                 Items.Add(rootNode);
             }
         }
