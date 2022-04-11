@@ -1,16 +1,9 @@
 using Avalonia.Controls;
 using Image_Viewer.Models;
-using Avalonia.Interactivity;
 using Image_Viewer.ViewModels;
 using System.Linq;
-using System.Collections.Generic;
 using System.IO;
-using Avalonia.Input;
-using Avalonia;
-using Avalonia.LogicalTree;
-using Avalonia.Layout;
 using Avalonia.Controls.Primitives;
-using Avalonia.Collections;
 
 namespace Image_Viewer.Views
 {

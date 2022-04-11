@@ -1,14 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
-using System.Linq;
-using System.Reactive;
-using Avalonia.Controls;
-using System.Windows.Input;
-using ReactiveUI;
 using System.IO;
-using System.Diagnostics;
 using Image_Viewer.Models;
 using Avalonia.Media.Imaging;
 
